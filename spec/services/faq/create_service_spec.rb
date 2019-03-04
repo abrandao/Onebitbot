@@ -8,22 +8,22 @@ describe FaqModule::CreateService do
   end
 
   describe '#call' do
-    context 'Without hastag params' do
+    context 'Without hashtag params' do
       it 'will receive a error' do
         @createService = FaqModule::CreateService.new({"question" => @question, "answer" => @answer})
         response = @createService.call()
-        expect(response).to match("Hashtag Obrigatória")
+        expect(response).to match("Hashtag obrigatória")
       end
     end
 
     context "With valid params" do
       before do
         @createService = FaqModule::CreateService.new({"question" => @question, "answer" => @answer, "hashtags" => @hashtags})
-        @response = @createService.all()
+        @response = @createService.call()
       end
 
      it "Receive success message" do
-      expect(@response),to match("Criado com sucesso")
+      expect(@response).to match("Criado com sucesso")
      end
 
      it "Question and answer is present in database" do

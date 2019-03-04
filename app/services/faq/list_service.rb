@@ -7,7 +7,7 @@ module FaqModule
 
     def call
       if @action == "search"
-        faqs = Faq.searc(@query)
+        faqs = Faq.search(@query)
       elseif @action == "search_by_hashtag"
         faqs = []
         Faq.all.each do |faq|
