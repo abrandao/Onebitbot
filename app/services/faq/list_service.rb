@@ -5,13 +5,14 @@ module FaqModule
       @query = params["query"]
     end
 
+
     def call
       if @action == "search"
         faqs = Faq.search(@query)
-      elseif @action == "search_by_hashtag"
+      elsif @action == "search_by_hashtag"
         faqs = []
         Faq.all.each do |faq|
-          faq.hashtags.each do |hashtags|
+          faq.hashtags.each do |hashtag|
             faqs << faq if hashtag.name == @query
           end
         end
@@ -23,8 +24,8 @@ module FaqModule
       faqs.each do |f|
         response += "*#{f.id}* - "
         response += "*#{f.question}*\n"
-        response += "`#{f.id}` \n"
-        f.hashtag.each do |h|
+        response += "`#{f.answer}` \n"
+        f.hashtags.each do |h|
           response += "_##{h.name}_ "
         end
         response += "\n\n"

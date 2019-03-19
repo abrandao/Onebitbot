@@ -6,8 +6,9 @@ module FaqModule
       @hashtags = params["hashtags"]
     end
 
+
     def call
-      return 'Hashtag obrigatória' if @hashtags == nil
+      return 'Hashtag Obrigatória' if @hashtags == nil
       Faq.transaction do
         faq = Faq.create(question: @question, answer: @answer)
         @hashtags.split(/[\s,]+/).each do |hashtag|
